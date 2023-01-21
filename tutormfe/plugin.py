@@ -15,7 +15,8 @@ config = {
         "CADDY_DOCKER_IMAGE": "{{ DOCKER_IMAGE_CADDY }}",
         "ACCOUNT_MFE_APP": {
             "name": "account",
-            "repository": "https://github.com/edx/frontend-app-account",
+            "repository": "https://github.com/edspirit/frontend-app-account",
+            "branch": "edspirit-release/nutmeg.3",
             "port": 1997,
             "env": {
                 "production": {
@@ -26,23 +27,32 @@ config = {
         },
         "GRADEBOOK_MFE_APP": {
             "name": "gradebook",
-            "repository": "https://github.com/edx/frontend-app-gradebook",
+            "repository": "https://github.com/edspirit/frontend-app-gradebook",
+            "branch": "edspirit-release/nutmeg.3",
             "port": 1994,
         },
         "LEARNING_MFE_APP": {
             "name": "learning",
-            "repository": "https://github.com/edx/frontend-app-learning",
+            "repository": "https://github.com/edspirit/frontend-app-learning",
+            "branch": "edspirit-release/nutmeg.3",
             "port": 2000,
         },
         "PROFILE_MFE_APP": {
             "name": "profile",
-            "repository": "https://github.com/edx/frontend-app-profile",
+            "repository": "https://github.com/edspirit/frontend-app-profile",
+            "branch": "edspirit-release/nutmeg.3",
             "port": 1995,
              "env": {
                 "production": {
                     "ENABLE_LEARNER_RECORD_MFE": "true",
                 },
             },
+        },
+        "HOMEPAGE_MFE_APP": {
+            "name": "homepage",
+            "repository": "https://github.com/edspirit/frontend-app-homepage.git",
+            "branch": "master",
+            "port": 2010,
         },
     },
 }
