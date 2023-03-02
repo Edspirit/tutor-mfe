@@ -16,7 +16,7 @@ config = {
         "ACCOUNT_MFE_APP": {
             "name": "account",
             "repository": "https://github.com/edspirit/frontend-app-account",
-            "branch": "edspirit-release/nutmeg.3",
+            "branch": "edspirit-release/nutmeg.4",
             "port": 1997,
             "env": {
                 "production": {
