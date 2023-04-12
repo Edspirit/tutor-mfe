@@ -18,6 +18,8 @@ RUN apt update \
 RUN mkdir -p /openedx/app /openedx/env
 WORKDIR /openedx/app
 ENV PATH ./node_modules/.bin:${PATH}
+RUN npm config set fetch-retry-maxtimeout 60000
+RUN npm config set fetch-retry-mintimeout 10000
 
 ######## i18n strings
 FROM base AS i18n

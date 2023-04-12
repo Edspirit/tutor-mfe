@@ -24,7 +24,7 @@ config = {
         "VERSION": __version__,
         "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-mfe:{{ MFE_VERSION }}",
         "HOST": "apps.{{ LMS_HOST }}",
-        "COMMON_VERSION": "edspirit-release/olive.4",
+        "COMMON_VERSION": "{{ OPENEDX_COMMON_VERSION }}",
         "CADDY_DOCKER_IMAGE": "{{ DOCKER_IMAGE_CADDY }}",
     },
 }
@@ -175,6 +175,22 @@ def _mounted_mfe_image_management() -> None:
         )
         tutor_hooks.Filters.IMAGES_PULL.add_item((name, tag))
         tutor_hooks.Filters.IMAGES_PUSH.add_item((name, tag))
+
+
+# init script
+with open(
+    os.path.join(
+        pkg_resources.resource_filename("tutormfe", "templates"),
+        "mfe",
+        "tasks",
+        "lms",
+        "init",
+    ),
+    encoding="utf-8",
+) as task_file:
+    tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("lms", task_file.read()))
+
+REPO_PREFIX = "frontend-app-"
 
 
 # init script
