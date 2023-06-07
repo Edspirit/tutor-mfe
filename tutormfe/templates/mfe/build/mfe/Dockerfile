@@ -9,6 +9,7 @@ RUN apt update \
     # additionally required for node-sass (on arm)
     python g++
 
+RUN npm install -g npm@latest
 RUN mkdir -p /openedx/app /openedx/env
 WORKDIR /openedx/app
 ENV PATH ./node_modules/.bin:${PATH}
@@ -47,6 +48,8 @@ ARG NPM_REGISTRY={{ NPM_REGISTRY }}
 ENV CPPFLAGS=-DPNG_ARM_NEON_OPT=0
 {# We define this environment variable to bypass an issue with the installation of pact https://github.com/pact-foundation/pact-js-core/issues/264 #}
 ENV PACT_SKIP_BINARY_INSTALL=true
+RUN npm config set fetch-retry-maxtimeout 60000
+RUN npm config set fetch-retry-mintimeout 10000
 RUN npm clean-install --force --no-audit --no-fund --registry=$NPM_REGISTRY \
   && rm -rf ~/.npm
 {{ patch("mfe-dockerfile-post-npm-install") }}
