@@ -26,42 +26,52 @@ config = {
 CORE_MFE_APPS: dict[str, MFE_ATTRS_TYPE] = {
     "authn": {
         "repository": "https://github.com/edspirit/frontend-app-authn",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-authn/git/refs/tags",
         "port": 1999,
     },
     "account": {
         "repository": "https://github.com/edspirit/frontend-app-account",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-account/git/refs/tags",
         "port": 1997,
     },
     "communications": {
         "repository": "https://github.com/edspirit/frontend-app-communications",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-communications/git/refs/tags",
         "port": 1984,
     },
     "course-authoring": {
         "repository": "https://github.com/edspirit/frontend-app-course-authoring",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-course-authoring/git/refs/tags",
         "port": 2001,
     },
     "discussions": {
         "repository": "https://github.com/edspirit/frontend-app-discussions",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-discussions/git/refs/tags",
         "port": 2002,
     },
     "gradebook": {
         "repository": "https://github.com/edspirit/frontend-app-gradebook",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-gradebook/git/refs/tags",
         "port": 1994,
     },
     "learning": {
         "repository": "https://github.com/edspirit/frontend-app-learning",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-learning/git/refs/tags",
         "port": 2000,
     },
     "ora-grading": {
         "repository": "https://github.com/edspirit/frontend-app-ora-grading",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-ora-grading/git/refs/tags",
         "port": 1993,
     },
     "profile": {
         "repository": "https://github.com/edspirit/frontend-app-profile",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-profile/git/refs/tags",
         "port": 1995,
     },
     "homepage": {
         "repository": "https://github.com/edspirit/frontend-app-homepage.git",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-homepage/git/refs/tags",
         "port": 2010,
     },
 }
