@@ -54,6 +54,7 @@ COPY --from={{ app_name }}-src /package.json /openedx/app/package.json
 COPY --from={{ app_name }}-src /package-lock.json /openedx/app/package-lock.json
 ARG NPM_REGISTRY={{ NPM_REGISTRY }}
 {{ patch("mfe-dockerfile-pre-npm-install") }}
+{{ patch("mfe-dockerfile-pre-npm-install-{}".format(app_name)) }}
 {#- Required for building optipng on M1 #}
 ENV CPPFLAGS=-DPNG_ARM_NEON_OPT=0
 {#- We define this environment variable to bypass an issue with the installation of pact https://github.com/pact-foundation/pact-js-core/issues/264 #}
@@ -64,6 +65,7 @@ RUN npm clean-install --force --no-audit --no-fund --registry=$NPM_REGISTRY \
   && rm -rf ~/.npm
 RUN {% if is_buildkit_enabled() %}--mount=type=cache,target=/root/.npm,sharing=shared {% endif %}npm clean-install --no-audit --no-fund --registry=$NPM_REGISTRY
 {{ patch("mfe-dockerfile-post-npm-install") }}
+{{ patch("mfe-dockerfile-post-npm-install-{}".format(app_name)) }}
 COPY --from={{ app_name }}-src / /openedx/app
 COPY --from={{ app_name }}-i18n /openedx/app/src/i18n/messages /openedx/app/src/i18n/messages
 EXPOSE {{ app['port'] }}
