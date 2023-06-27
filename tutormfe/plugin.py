@@ -9,7 +9,7 @@ import pkg_resources
 from tutor import hooks as tutor_hooks
 from tutor.hooks import priorities
 
-from .__about__ import __version__
+from .__about__ import __version__, __version_suffix__
 from .hooks import MFE_ATTRS_TYPE, MFE_APPS
 
 config = {
@@ -23,55 +23,60 @@ config = {
 }
 
 
+# If the package version suffix is set (for instance, in the nightly branch) use the "heads" Github refs API endpoint by default.
+def gh_refs_path() -> str:
+    return "heads" if __version_suffix__ else "tags"
+
+
 CORE_MFE_APPS: dict[str, MFE_ATTRS_TYPE] = {
     "authn": {
         "repository": "https://github.com/edspirit/frontend-app-authn",
-        "refs": "https://api.github.com/repos/edspirit/frontend-app-authn/git/refs/tags",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-authn/git/refs/" + gh_refs_path(),
         "port": 1999,
     },
     "account": {
         "repository": "https://github.com/edspirit/frontend-app-account",
-        "refs": "https://api.github.com/repos/edspirit/frontend-app-account/git/refs/tags",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-account/git/refs/" + gh_refs_path(),
         "port": 1997,
     },
     "communications": {
         "repository": "https://github.com/edspirit/frontend-app-communications",
-        "refs": "https://api.github.com/repos/edspirit/frontend-app-communications/git/refs/tags",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-communications/git/refs/" + gh_refs_path(),
         "port": 1984,
     },
     "course-authoring": {
         "repository": "https://github.com/edspirit/frontend-app-course-authoring",
-        "refs": "https://api.github.com/repos/edspirit/frontend-app-course-authoring/git/refs/tags",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-course-authoring/git/refs/" + gh_refs_path(),
         "port": 2001,
     },
     "discussions": {
         "repository": "https://github.com/edspirit/frontend-app-discussions",
-        "refs": "https://api.github.com/repos/edspirit/frontend-app-discussions/git/refs/tags",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-discussions/git/refs/" + gh_refs_path(),
         "port": 2002,
     },
     "gradebook": {
         "repository": "https://github.com/edspirit/frontend-app-gradebook",
-        "refs": "https://api.github.com/repos/edspirit/frontend-app-gradebook/git/refs/tags",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-gradebook/git/refs/" + gh_refs_path(),
         "port": 1994,
     },
     "learning": {
         "repository": "https://github.com/edspirit/frontend-app-learning",
-        "refs": "https://api.github.com/repos/edspirit/frontend-app-learning/git/refs/tags",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-learning/git/refs/" + gh_refs_path(),
         "port": 2000,
     },
     "ora-grading": {
         "repository": "https://github.com/edspirit/frontend-app-ora-grading",
-        "refs": "https://api.github.com/repos/edspirit/frontend-app-ora-grading/git/refs/tags",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-ora-grading/git/refs/" + gh_refs_path(),
         "port": 1993,
     },
     "profile": {
         "repository": "https://github.com/edspirit/frontend-app-profile",
-        "refs": "https://api.github.com/repos/edspirit/frontend-app-profile/git/refs/tags",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-profile/git/refs/" + gh_refs_path(),
         "port": 1995,
     },
     "homepage": {
         "repository": "https://github.com/edspirit/frontend-app-homepage.git",
-        "refs": "https://api.github.com/repos/edspirit/frontend-app-homepage/git/refs/tags",
+        "refs": "https://api.github.com/repos/edspirit/frontend-app-homepage/git/refs/tags" + gh_refs_path(),
         "port": 2010,
     },
 }
