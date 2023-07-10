@@ -15,6 +15,7 @@ RUN apt update \
     # https://www.npmjs.com/package/canvas
     libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
 
+RUN npm install -g npm@latest
 RUN mkdir -p /openedx/app /openedx/env
 WORKDIR /openedx/app
 ENV PATH ./node_modules/.bin:${PATH}
@@ -63,7 +64,9 @@ ARG NPM_REGISTRY={{ NPM_REGISTRY }}
 ENV CPPFLAGS=-DPNG_ARM_NEON_OPT=0
 {#- We define this environment variable to bypass an issue with the installation of pact https://github.com/pact-foundation/pact-js-core/issues/264 #}
 ENV PACT_SKIP_BINARY_INSTALL=true
-RUN {% if is_buildkit_enabled() %}--mount=type=cache,target=/root/.npm,sharing=shared {% endif %}npm clean-install --no-audit --no-fund --registry=$NPM_REGISTRY
+RUN npm config set fetch-retry-maxtimeout 60000
+RUN npm config set fetch-retry-mintimeout 10000
+RUN RUN {% if is_buildkit_enabled() %}--mount=type=cache,target=/root/.npm,sharing=shared {% endif %} npm clean-install --force --no-audit --no-fund --registry=$NPM_REGISTRY
 {{ patch("mfe-dockerfile-post-npm-install") }}
 {{ patch("mfe-dockerfile-post-npm-install-{}".format(app_name)) }}
 COPY --from={{ app_name }}-src / /openedx/app
