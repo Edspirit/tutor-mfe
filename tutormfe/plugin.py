@@ -24,7 +24,7 @@ config = {
         "VERSION": __version__,
         "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-mfe:{{ MFE_VERSION }}",
         "HOST": "apps.{{ LMS_HOST }}",
-        "COMMON_VERSION": "{{ OPENEDX_COMMON_VERSION }}",
+        "COMMON_VERSION": "edspirit-release/olive.4",
         "CADDY_DOCKER_IMAGE": "{{ DOCKER_IMAGE_CADDY }}",
     },
 }
