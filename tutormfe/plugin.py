@@ -12,42 +12,48 @@ config = {
         "VERSION": __version__,
         "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-mfe:{{ MFE_VERSION }}",
         "HOST": "apps.{{ LMS_HOST }}",
-        "COMMON_VERSION": "{{ OPENEDX_COMMON_VERSION }}",
+        "COMMON_VERSION": "edspirit-release/olive.4",
         "CADDY_DOCKER_IMAGE": "{{ DOCKER_IMAGE_CADDY }}",
         "AUTHN_MFE_APP": {
             "name": "authn",
-            "repository": "https://github.com/openedx/frontend-app-authn",
+            "repository": "https://github.com/edspirit/frontend-app-authn",
             "port": 1999,
         },
         "ACCOUNT_MFE_APP": {
             "name": "account",
-            "repository": "https://github.com/openedx/frontend-app-account",
+            "repository": "https://github.com/edspirit/frontend-app-account",
             "port": 1997,
         },
         "COURSE_AUTHORING_MFE_APP": {
             "name": "course-authoring",
-            "repository": "https://github.com/openedx/frontend-app-course-authoring",
+            "repository": "https://github.com/edspirit/frontend-app-course-authoring",
             "port": 2001,
         },
         "DISCUSSIONS_MFE_APP": {
             "name": "discussions",
-            "repository": "https://github.com/openedx/frontend-app-discussions",
+            "repository": "https://github.com/edspirit/frontend-app-discussions",
             "port": 2002,
         },
         "GRADEBOOK_MFE_APP": {
             "name": "gradebook",
-            "repository": "https://github.com/openedx/frontend-app-gradebook",
+            "repository": "https://github.com/edspirit/frontend-app-gradebook",
             "port": 1994,
         },
         "LEARNING_MFE_APP": {
             "name": "learning",
-            "repository": "https://github.com/openedx/frontend-app-learning",
+            "repository": "https://github.com/edspirit/frontend-app-learning",
             "port": 2000,
         },
         "PROFILE_MFE_APP": {
             "name": "profile",
-            "repository": "https://github.com/openedx/frontend-app-profile",
+            "repository": "https://github.com/edspirit/frontend-app-profile",
             "port": 1995,
+        },
+        "HOMEPAGE_MFE_APP": {
+            "name": "homepage",
+            "repository": "https://github.com/edspirit/frontend-app-homepage.git",
+            "branch": "master",
+            "port": 2010,
         },
     },
 }
@@ -59,6 +65,7 @@ ALL_MFES = (
     "gradebook",
     "learning",
     "profile",
+    "homepage",
 )
 
 with open(
