@@ -15,7 +15,6 @@ RUN apt update \
     # https://www.npmjs.com/package/canvas
     libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
 
-RUN npm install -g npm@latest
 RUN mkdir -p /openedx/app /openedx/env
 WORKDIR /openedx/app
 ENV PATH ./node_modules/.bin:${PATH}
