@@ -11,7 +11,6 @@ RUN apt update \
     # required for image-webpack-loader (on arm)
     libpng-dev
 
-RUN npm install -g npm@latest
 RUN mkdir -p /openedx/app /openedx/env
 WORKDIR /openedx/app
 ENV PATH ./node_modules/.bin:${PATH}
