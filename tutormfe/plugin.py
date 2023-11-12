@@ -26,7 +26,9 @@ config = {
 
 # If the package version suffix is set (for instance, in the nightly branch) use the "heads" Github refs API endpoint by default.
 def gh_refs_path() -> str:
-    return "heads" if __version_suffix__ else "tags"
+    # return "heads" if __version_suffix__ else "tags"
+    # we use branches on the edspirit forks, not tags
+    return "heads"
 
 
 CORE_MFE_APPS: dict[str, MFE_ATTRS_TYPE] = {
