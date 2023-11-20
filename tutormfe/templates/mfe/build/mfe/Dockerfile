@@ -67,7 +67,7 @@ ENV CPPFLAGS=-DPNG_ARM_NEON_OPT=0
 ENV PACT_SKIP_BINARY_INSTALL=true
 RUN npm config set fetch-retry-maxtimeout 60000
 RUN npm config set fetch-retry-mintimeout 10000
-RUN RUN {% if is_buildkit_enabled() %}--mount=type=cache,target=/root/.npm,sharing=shared {% endif %} npm clean-install --force --no-audit --no-fund --registry=$NPM_REGISTRY
+RUN {% if is_buildkit_enabled() %}--mount=type=cache,target=/root/.npm,sharing=shared {% endif %} npm clean-install --force --no-audit --no-fund --registry=$NPM_REGISTRY
 {{ patch("mfe-dockerfile-post-npm-install") }}
 {{ patch("mfe-dockerfile-post-npm-install-{}".format(app_name)) }}
 COPY --from={{ app_name }}-src / /openedx/app
